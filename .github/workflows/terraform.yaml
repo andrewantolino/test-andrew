@@ -59,7 +59,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform
+        working-directory: ./gcp
 
     # Checkout the repository to the GitHub Actions runner
     steps:
