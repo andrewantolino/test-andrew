@@ -21,7 +21,7 @@ env:
   GKE_ZONE: australia-southeast1
   GKE_CLUSTER: cluster-andrew
   IMAGE: andrew-gke-test
-  REGISTRY_HOSTNAME: gcr.io
+  REGISTRY_HOSTNAME: asia.gcr.io
   DEPLOYMENT_NAME: andrew-gke-test
 
 jobs:
