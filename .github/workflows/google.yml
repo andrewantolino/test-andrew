@@ -16,7 +16,7 @@ on:
 
 # Environment variables available to all jobs and steps in this workflow
 env:
-  GKE_PROJECT: ${{ secrets.GKE_PROJECT }}
+  GKE_PROJECT: ${{ secrets.PROJECT_ID }}
   GITHUB_SHA: ${{ github.sha }}
   GKE_ZONE: australia-southeast1-a
   GKE_CLUSTER: cluster-andrew
