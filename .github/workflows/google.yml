@@ -18,7 +18,7 @@ on:
 env:
   GKE_PROJECT: ${{ secrets.PROJECT_ID }}
   GITHUB_SHA: ${{ github.sha }}
-  GKE_ZONE: australia-southeast1-a
+  GKE_ZONE: australia-southeast1
   GKE_CLUSTER: cluster-andrew
   IMAGE: andrew-gke-test
   REGISTRY_HOSTNAME: gcr.io
