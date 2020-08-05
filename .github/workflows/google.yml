@@ -89,6 +89,7 @@ jobs:
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
         cd base
         ../kustomize edit set image nginx-deployment=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${GITHUB_SHA}
+        cat kustomization.yaml
         cd ..
         ./kustomize build overlays/development
         ./kustomize build overlays/development | kubectl apply -f -
