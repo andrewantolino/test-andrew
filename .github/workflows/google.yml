@@ -91,6 +91,8 @@ jobs:
         ../kustomize edit set image nginx-deployment=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${GITHUB_SHA}
         cat kustomization.yaml
         cd ..
+        echo development kustomization file
+        cat ./overlays/development/kustomization.yaml
         ./kustomize build overlays/development
         ./kustomize build overlays/development | kubectl apply -f -
         kubectl rollout status deployment/$DEPLOYMENT_NAME -n $GKE_NAMESPACE
