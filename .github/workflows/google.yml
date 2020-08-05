@@ -88,9 +88,9 @@ jobs:
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
         cd base
-        # ../kustomize edit set image nginx=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${GITHUB_SHA}
-        ../kustomize edit set image nginx=busybox:latest
+        ../kustomize edit set image nginx=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${GITHUB_SHA}
         cd ..
+        ./kustomize build overlays/development
         ./kustomize build overlays/development | kubectl apply -f -
         kubectl rollout status deployment/$DEPLOYMENT_NAME -n $GKE_NAMESPACE
         kubectl get services -o wide -n $GKE_NAMESPACE
