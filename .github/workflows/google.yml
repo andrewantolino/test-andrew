@@ -25,6 +25,7 @@ env:
   IMAGE: andrew-gke-test
   REGISTRY_HOSTNAME: asia.gcr.io
   DEPLOYMENT_NAME: andrew-gke-test
+  GKE_NAMESPACE: andrew-development
 
 jobs:
   setup-build-publish-deploy:
