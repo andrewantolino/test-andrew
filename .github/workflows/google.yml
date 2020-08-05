@@ -87,6 +87,7 @@ jobs:
     - name: Deploy
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
+        gcloud auth configure-docker
         cd base
         ../kustomize edit set image nginx=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${GITHUB_SHA}
         cd ..
