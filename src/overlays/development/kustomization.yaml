@@ -1,3 +1,7 @@
 bases:
 - ../../base
 namespace: "andrew-development"
+images:
+- name: nginx
+  newName: busybox
+  newTag: latest
