@@ -1,5 +1,6 @@
 resources:
 - nginx-deployment.yaml
 - nginx-service.yaml
+- nginx-namespace.yaml
 images:
 - name: nginx
