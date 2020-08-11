@@ -82,19 +82,18 @@ jobs:
     - name: Set up Kustomize
       run: |
         curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
-
-    # Deploy the Docker image to the GKE cluster
-    - name: Deploy
+    
+    # Update base container image
+    - name: Update base container image
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE --project $GKE_PROJECT
-        gcloud auth configure-docker
-        cd base
         ../kustomize edit set image nginx=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${GITHUB_SHA}
-        cd ..
-        echo development kustomization file
-        cat ./overlays/development/kustomization.yaml
-        ./kustomize build overlays/development
-        ./kustomize build overlays/development > kustomize-deployment.yaml
-        kubectl apply -f kustomize-deployment.yaml
+        cat kustomization.yaml
+      working-directory: ./src/base
+      
+    # Deploy the Docker image to the GKE cluster
+    - name: Deploy development
+      run: |
+        kubectl apply -k overlays/development
         kubectl rollout status deployment/$DEPLOYMENT_NAME -n $GKE_NAMESPACE
         kubectl get services -o wide -n $GKE_NAMESPACE
